@@ -22,10 +22,24 @@ To do this, the app presents tips, places to collaborate on environmental projec
 ## Methodology:
 ### Streamlit and Python:
 For the creation of the Social Network prototype.
+
 https://akkurat.streamlit.app/
+
+<p align="center">
+  <img src="https://github.com/Vicgutgam/Final-project.-Carbon_footprint/blob/main/Im%C3%A1genes/Akkurat%20app.png" width="50%">
+  <br>
+ 
+</p>
+
 
 ### Tableau:
 For the analysis and presentation of data related to social networks.
+
+<p align="center">
+  <img src="https://github.com/Vicgutgam/Final-project.-Carbon_footprint/blob/main/Im%C3%A1genes/Usuarios%20redes.png" width="50%">
+  <br>
+ 
+</p>
 
 ### SQL:
 For the section on the analysis of the carbon footprint of food.
