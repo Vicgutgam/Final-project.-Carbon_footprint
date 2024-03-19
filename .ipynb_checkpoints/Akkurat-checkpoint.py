@@ -5,6 +5,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import plotly.graph_objects as go
 import folium
 import random 
 import webbrowser
@@ -93,7 +94,7 @@ with st.spinner('Loading page...'):
               <small style="font-size:18px;"><em>La APP para hacer del mundo un lugar mejor. </em></small>
             </p>
             ''', unsafe_allow_html=True)
-        st.markdown('#### "Akkurat" es una palabra que proviene de la expresión noruega "Akkurat nå"que significa "Justo ahora" y es que es justo ahora cuando más necesitamos una APP de estas características, que tenga los aspectos de un red social pero que a su vez tenga un gran potencial para poder ser una herramienta para cambiar el mundo y hacerlo más sotenible.')
+        st.markdown('#### Akkurat" es una palabra que proviene de la expresión noruega que significa "Justo ahora" y es que es justo ahora cuando más necesitamos una APP de estas características, que tenga los aspectos de un red social pero que a su vez tenga un gran potencial para poder ser una herramienta para cambiar el mundo y hacerlo más sotenible.')
 
         st.markdown('## ¿Qué hace especial a Akkurat?')
         st.markdown('#### Esta APP tiene un fin social, el luchar por un mundo mejor a través de la ecología y de la conexión de las personas a través de proyectos gustos, proyectos y visión de futuro común.')
