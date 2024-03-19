@@ -1,21 +1,16 @@
 #### AKKURAT!!!!
-# Para arrancar el streamlit, introducir este código: streamlit run app.py
+# Para arrancar el streamlit, introducir este código: streamlit run Akkurat.py
 
 # books: Basic libraries:
 import streamlit as st
 import pandas as pd
 import numpy as np
 import random 
-import webbrowser
 import markdown
 
 import seaborn as sns
 import matplotlib.pyplot as plt
-from IPython.display import HTML
 
-from urllib.request import urlopen
-import requests
-from bs4 import BeautifulSoup
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -83,8 +78,8 @@ page = st.sidebar.radio('', ['¿Qué es Akkurat?', 'Tu huella de carbono', 'Trab
 about_selection = ''
 with st.spinner('Loading page...'):
     if page == '¿Qué es Akkurat?':
-        st.title('Akkurat')
-        st.subheader('¿Qué es Akkurat?')
+        st.title('¿Qué es Akkurat?')
+        st.subheader('')
         st.markdown('''
             <p align="center">
               <img src="https://raw.githubusercontent.com/Vicgutgam/Final-proyect/main/Im%C3%A1genes/prin.jpg?token=GHSAT0AAAAAACNF6SMVXLVVUDGCYQCDL3OWZPPOMGQ" width="36%" alt="Akkurat">
