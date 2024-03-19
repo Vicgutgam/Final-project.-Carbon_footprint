@@ -8,11 +8,6 @@ import numpy as np
 import random 
 
 
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-import warnings
-warnings.filterwarnings("ignore")
 
 
 
