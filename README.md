@@ -21,7 +21,8 @@ To do this, the app presents tips, places to collaborate on environmental projec
 
 ## Methodology:
 ### Streamlit and Python:
-For the creation of the Social Network prototype
+For the creation of the Social Network prototype.
+https://akkurat.streamlit.app/
 
 ### Tableau:
 For the analysis and presentation of data related to social networks.
