@@ -44,6 +44,13 @@ For the analysis and presentation of data related to social networks.
 ### SQL:
 For the section on the analysis of the carbon footprint of food.
 
+<p align="center">
+  <img src="https://github.com/Vicgutgam/Final-project.-Carbon_footprint/blob/main/Im%C3%A1genes/M%C3%A1ximo%20y%20m%C3%ADnimo%20SQL.png" width="80%">
+  <br>
+ 
+</p>
+
+
 ## Tools:
 **Technical support**
 * **Jupyter Lab**
