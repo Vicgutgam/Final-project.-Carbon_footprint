@@ -32,13 +32,14 @@ def consejo():
             print('Por favor, escribe "si" o "no".')
 
 # Función para guardar la foto y el texto en un archivo
+
 def save_data(image, text):
     image_path = os.path.join(SAVE_DIR, "images")
     text_path = os.path.join(SAVE_DIR, "texts.txt")
     
     # Guardar la imagen
     if not os.path.exists(image_path):
-        os.makedirs(image_path)
+        os.makedirs(image_path)  # Crear la carpeta "images" si no existe
     image_name = f"image_{len(os.listdir(image_path)) + 1}.png"
     with open(os.path.join(image_path, image_name), "wb") as img_file:
         img_file.write(image.read())
@@ -49,10 +50,15 @@ def save_data(image, text):
 
 # Función para cargar las imágenes y los textos acumulados
 def load_data():
-    image_paths = [os.path.join(SAVE_DIR, "images", filename) for filename in os.listdir(os.path.join(SAVE_DIR, "images"))]
+    image_path = os.path.join(SAVE_DIR, "images")
     text_path = os.path.join(SAVE_DIR, "texts.txt")
-    with open(text_path, "r") as txt_file:
-        texts = txt_file.readlines()
+    if os.path.exists(image_path) and os.path.exists(text_path):
+        image_paths = [os.path.join(image_path, filename) for filename in os.listdir(image_path)]
+        with open(text_path, "r") as txt_file:
+            texts = txt_file.readlines()
+    else:
+        image_paths = []
+        texts = []
     return image_paths, texts
 
 # Función para eliminar una imagen y su texto asociado
