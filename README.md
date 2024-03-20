@@ -62,6 +62,12 @@ We have six different sections:
 -  Presentation: introduction of the APP idea.
 -  Your profile: here would be your profile where you update the ecological activities you are carrying out.
 
+  <p align="center">
+  <img src="https://github.com/Vicgutgam/Final-project.-Carbon_footprint/blob/main/Im%C3%A1genes/Pefil.png" width="20%">
+  <br>
+ 
+</p>
+
 
 ## Tools:
 **Technical support**
