@@ -5,11 +5,15 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import random 
+import random
+import base64
+import os
 
 
 
-
+# Directorio donde se guardarán las fotos y los textos
+SAVE_DIR = "saved_data"
+os.makedirs(SAVE_DIR, exist_ok=True)
 
 
 #Funciones: 
@@ -27,13 +31,48 @@ def consejo():
         else:
             print('Por favor, escribe "si" o "no".')
 
+# Función para guardar la foto y el texto en un archivo
+def save_data(image, text):
+    image_path = os.path.join(SAVE_DIR, "images")
+    text_path = os.path.join(SAVE_DIR, "texts.txt")
+    
+    # Guardar la imagen
+    if not os.path.exists(image_path):
+        os.makedirs(image_path)
+    image_name = f"image_{len(os.listdir(image_path)) + 1}.png"
+    with open(os.path.join(image_path, image_name), "wb") as img_file:
+        img_file.write(image.read())
+    
+    # Guardar el texto
+    with open(text_path, "a") as txt_file:
+        txt_file.write(text + "\n")
 
-# Llama a la función y proporciona la URL de la imagen
+# Función para cargar las imágenes y los textos acumulados
+def load_data():
+    image_paths = [os.path.join(SAVE_DIR, "images", filename) for filename in os.listdir(os.path.join(SAVE_DIR, "images"))]
+    text_path = os.path.join(SAVE_DIR, "texts.txt")
+    with open(text_path, "r") as txt_file:
+        texts = txt_file.readlines()
+    return image_paths, texts
+
+# Función para eliminar una imagen y su texto asociado
+def delete_data(index):
+    image_paths, texts = load_data()
+    if 0 <= index < len(image_paths):
+        os.remove(image_paths[index])
+        del texts[index]
+        with open(os.path.join(SAVE_DIR, "texts.txt"), "w") as txt_file:
+            for text in texts:
+                txt_file.write(text)
+
+# Inicializar variables
+saved_images, saved_texts = load_data()
 
             
 
 #Listas y diccionarios:
-
+saved_text = ""
+saved_picture = None
 consejos = ['Reduce, reutiliza, recicla: Reduce el consumo de productos desechables, reutiliza lo que puedas y recicla todo lo posible para reducir la cantidad de residuos que generas.','Consume productos locales y de temporada: Comprar alimentos producidos localmente y en temporada ayuda a reducir la cantidad de emisiones asociadas al transporte de alimentos.',' Opta por una dieta basada en plantas: Reducir el consumo de carne y productos de origen animal puede tener un impacto significativo en la reducción de la huella de carbono, ya que la producción de carne es intensiva en emisiones.','Ahorra energía en casa: Apaga las luces y desconecta los aparatos electrónicos cuando no los estés usando. También puedes invertir en tecnologías más eficientes energéticamente, como bombillas LED y electrodomésticos con calificación de eficiencia energética.',' Reduce el consumo de agua: El agua caliente requiere energía para ser calentada, así que reduce el tiempo que pasas en la ducha y arregla las fugas de agua para ahorrar energía.','Utiliza el transporte público, camina o anda en bicicleta: Opta por el transporte público siempre que sea posible, o camina y anda en bicicleta para distancias cortas en lugar de utilizar un automóvil.','Invierte en energías renovables: Considera la posibilidad de instalar paneles solares en tu hogar o apoyar proyectos de energía renovable para reducir tu dependencia de los combustibles fósiles.','Reduce el consumo de productos de plástico: Utiliza bolsas reutilizables, botellas de agua recargables y evita los productos con exceso de embalaje de plástico.','Apoya a empresas y marcas sostenibles: Prefiere productos y servicios de empresas que se comprometan con prácticas sostenibles y respetuosas con el medio ambiente.','Educa a otros: Comparte tus conocimientos y experiencias sobre la reducción de la huella de carbono con amigos, familiares y comunidad para fomentar un cambio positivo a mayor escala.']
 
 fotos = ['https://github.com/Vicgutgam/Final-proyect/blob/main/Im%C3%A1genes/windmill-6307058_640.jpg?raw=true','https://github.com/Vicgutgam/Final-proyect/blob/main/Im%C3%A1genes/pollution-8252584_640.jpg?raw=true','https://github.com/Vicgutgam/Final-proyect/blob/main/Im%C3%A1genes/nature-2943774_640.jpg?raw=true','https://github.com/Vicgutgam/Final-proyect/blob/main/Im%C3%A1genes/conservatory-4161955_640.jpg?raw=true','https://github.com/Vicgutgam/Final-proyect/blob/main/Im%C3%A1genes/alternative-21761_640.jpg?raw=true']
@@ -41,13 +80,16 @@ fotos = ['https://github.com/Vicgutgam/Final-proyect/blob/main/Im%C3%A1genes/win
 
 
 # page configuration
+
+
+
 st.set_page_config(
     page_title='Akkurat',
     page_icon="🌲",
     layout='wide')
 
 
-
+st.title('Akkurat. Una app diferente')
 
 
 # image for Home page
@@ -69,12 +111,18 @@ top_sidebar_placeholder.markdown('''
 
 
 st.sidebar.title('Descubre')
-page = st.sidebar.radio('', ['¿Qué es Akkurat?', 'Tu huella de carbono', 'Trabajemos juntos', 'Proyectos en casa','Consejos', 'Aprende'])
+page = st.sidebar.radio('', ['¿Qué es Akkurat?', 'Tu huella de carbono', 'Trabajemos juntos', 'Proyectos en casa','Consejos', 'Aprende','Tu Perfil'])
 about_selection = ''
+
+
+
 with st.spinner('Loading page...'):
+    
+    
+### PÁGINA  PRINCIPAL
     if page == '¿Qué es Akkurat?':
-        st.title('¿Qué es Akkurat?')
-        st.subheader('')
+        
+        st.subheader('¿Qué es Akkurat?')
         st.markdown('''
             <p align="center">
               <img src="https://raw.githubusercontent.com/Vicgutgam/Final-proyect/main/Im%C3%A1genes/prin.jpg?token=GHSAT0AAAAAACNF6SMVXLVVUDGCYQCDL3OWZPPOMGQ" width="36%" alt="Akkurat">
@@ -86,6 +134,44 @@ with st.spinner('Loading page...'):
 
         st.markdown('## ¿Qué hace especial a Akkurat?')
         st.markdown('#### Esta APP tiene un fin social, el luchar por un mundo mejor a través de la ecología y de la conexión de las personas a través de proyectos gustos, proyectos y visión de futuro común.')
+        
+        
+
+### perfil
+
+
+# Página 'Tu Perfil'
+    elif page == 'Tu Perfil':
+    # Title and logo        
+        st.markdown("# El perfil más verde")
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            # Capturar nueva foto
+            st.subheader("Capturar nueva foto:")
+            picture = st.camera_input("Haz clic para tomar una foto")
+
+        # Preguntar "¿Qué hiciste?" y guardar el texto
+            st.subheader("¿Qué hiciste?")
+            action_text = st.text_area("Describe tu acción aquí", "")
+
+        # Botón para guardar la acción y la foto
+            if st.button("Guardar"):
+                if picture is not None:
+                    save_data(picture, action_text)
+                    saved_images, saved_texts = load_data()
+
+    # Mostrar las fotos y los textos acumulados
+        st.subheader("Acciones guardadas:")
+        for i, (image_path, text) in enumerate(zip(saved_images, saved_texts)):
+            with st.expander(text):
+                st.image(image_path, caption="Imagen guardada", use_column_width=True)
+                if st.button(f"Eliminar imagen {i + 1}"):
+                    delete_data(i)
+                    saved_images, saved_texts = load_data()
+                
+        
+        
+### PROYECTOS EN CASA
     elif page == 'Proyectos en casa':
         # Title and logo
         st.markdown("# ¿Cómo reducir tu huella de carbono en casa?")
@@ -145,7 +231,7 @@ with st.spinner('Loading page...'):
             
     
 
-           
+#### SECIÓN DE TRABAJAR JUNTOS          
     
     elif page == 'Trabajemos juntos':
         # Title and logo
@@ -159,6 +245,9 @@ with st.spinner('Loading page...'):
         st.table(df.iloc[:, 2:])
         
 
+        
+### CONSEJOS        
+        
     elif page == 'Consejos':
         # Title and logo
         tamaño_letra = 24
@@ -169,14 +258,15 @@ with st.spinner('Loading page...'):
             st.button("¿Quieres otro consejo?", type="primary")
             st.image(random.choice(fotos))  
 
-        
+            
+            
+ ## Perfiles de INSTAGRAM Y REDES SOCIALES
                    
     
     elif page == 'Aprende':
         about_selection = st.sidebar.radio('', ['Instagram', 'Youtube', 'Webs de interés'])
-
-## Perfiles de INSTAGRAM
-
+        
+        
         if about_selection == 'Instagram':
             st.markdown("# Los perfiles más verdes")
             columima, columtex = st.columns(2)
@@ -315,8 +405,10 @@ with st.spinner('Loading page...'):
             st.write('#### 🥳 ¡Felicidades!  🥳 Tu huella de carbono está dentro del rango de lo que se condideraría sostenible sigue así y no olvides en ayudar a los demás a reducir su huella de carbono. Entre todos podremos hacer de este mundo un lugar mejor.')
             
             
-            
-## Enlaces de mis perfiles
+ 
+
+
+# Enlaces de mis perfiles
 
 github_url = "https://github.com/Vicgutgam"
 linkedin_url = "https://www.linkedin.com/in/v%C3%ADctor-guti%C3%A9rrez-gamero-81048b179/"
