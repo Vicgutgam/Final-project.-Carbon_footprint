@@ -50,6 +50,28 @@ For the section on the analysis of the carbon footprint of food.
  
 </p>
 
+## What is Akkurat?:
+"Akkurat" is a word that comes from the Norwegian expression "Akkurat nå" which means "Right now" and it is right now when we most need an APP of these characteristics, which has the aspects of a social network but at the same time has great potential to be a tool to change the world and make it more sustainable.
+
+We have six different sections:
+
+- Develop a carbon footprint calculator where various factors interact.
+-  Create different interaction sections in Streamlit
+- Carry out an analysis of the situation of social networks.
+- Create an analysis on the production of carbon footprint according to the type of food.
+
+· Ecological footprint calculator: this calculator takes into account some variables that affect.
+
+·Tips: different tips appear on how to improve your carbon footprint.
+
+·Learn: you can visit different social media profiles and websites to discover more news and projects about the environment.
+
+·Projects at home: in this section you can see small projects to make your home more sustainable.
+
+.Presentation: introduction of the APP idea.
+
+·Your profile: here would be your profile where you update the ecological activities you are carrying out.
+
 
 ## Tools:
 **Technical support**
