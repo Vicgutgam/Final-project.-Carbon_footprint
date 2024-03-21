@@ -11,10 +11,16 @@ import os
 
 
 
+st.set_page_config(
+    page_title='Akkurat',
+    page_icon="🌲",
+    layout='wide', )
+
+
+
 # Directorio donde se guardarán las fotos y los textos
 SAVE_DIR = "saved_data"
 os.makedirs(SAVE_DIR, exist_ok=True)
-
 
 #Funciones: 
 
@@ -32,6 +38,27 @@ def consejo():
             print('Por favor, escribe "si" o "no".')
 
 # Función para guardar la foto y el texto en un archivo
+
+def add_bg_from_local(image_file):
+        with open(image_file, "rb") as image_file:
+            encoded_string = base64.b64encode(image_file.read())
+        st.markdown(
+            f"""
+        <style>
+        .stApp {{
+            background-image: url(data:image/{"png"};base64,{encoded_string.decode()});
+            background-size: cover
+        }}
+        </style>
+        """,
+            unsafe_allow_html=True
+        )
+        
+add_bg_from_local('fondo.jpg')
+
+
+
+
 
 def save_data(image, text):
     image_path = os.path.join(SAVE_DIR, "images")
@@ -84,15 +111,15 @@ consejos = ['Reduce, reutiliza, recicla: Reduce el consumo de productos desechab
 fotos = ['https://github.com/Vicgutgam/Final-proyect/blob/main/Im%C3%A1genes/windmill-6307058_640.jpg?raw=true','https://github.com/Vicgutgam/Final-proyect/blob/main/Im%C3%A1genes/pollution-8252584_640.jpg?raw=true','https://github.com/Vicgutgam/Final-proyect/blob/main/Im%C3%A1genes/nature-2943774_640.jpg?raw=true','https://github.com/Vicgutgam/Final-proyect/blob/main/Im%C3%A1genes/conservatory-4161955_640.jpg?raw=true','https://github.com/Vicgutgam/Final-proyect/blob/main/Im%C3%A1genes/alternative-21761_640.jpg?raw=true']
 
 
-
-# page configuration
-
+###### PRUEBA DE FONDO 
 
 
-st.set_page_config(
-    page_title='Akkurat',
-    page_icon="🌲",
-    layout='wide')
+
+
+
+    
+
+
 
 
 st.title('Akkurat. Una app diferente')
@@ -117,12 +144,13 @@ top_sidebar_placeholder.markdown('''
 
 
 st.sidebar.title('Descubre')
+
 page = st.sidebar.radio('', ['¿Qué es Akkurat?', 'Tu huella de carbono', 'Trabajemos juntos', 'Proyectos en casa','Consejos', 'Aprende','Tu Perfil'])
 about_selection = ''
 
 
 
-with st.spinner('Loading page...'):
+with st.spinner('Creando un mundo mejor...'):
     
     
 ### PÁGINA  PRINCIPAL
@@ -374,6 +402,7 @@ with st.spinner('Loading page...'):
         
 
     elif page == 'Tu huella de carbono':
+        
         st.markdown("# Descubre tu huella de carbono")
         option = st.selectbox('## ¿Qué tipo de alimentación llevas?',
     ('Omnívora', 'Vegetariana', 'Vegana'))
