@@ -1,7 +1,7 @@
-  <center> <h1 style="color:#e39714">Final Project; Akkurat, and the Carbon footprint</h1> </center>
+  <center> <h1 style="color:#e39714"> 🌲 Final Project; Akkurat, and the Carbon footprint 🌲</h1> </center>
 
 <p align="center">
-  <img src="https://github.com/Vicgutgam/Final-proyect/blob/main/Im%C3%A1genes/iconopaint.png" width="20%">
+  <img src="https://github.com/Vicgutgam/Final-proyect/blob/main/Im%C3%A1genes/iconopaint.png" width="40%">
   <br>
  
 </p>
